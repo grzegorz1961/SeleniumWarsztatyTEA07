@@ -43,8 +43,6 @@ public class AddressInfoPage {
         PageFactory.initElements(driver, this);
     }
 
-
-
     public void setAliasInput(String alias) {
         aliasInfoInput.click();
         aliasInfoInput.clear();
@@ -86,4 +84,14 @@ public class AddressInfoPage {
     public String getAliasInfoInput() {
         return aliasInfoInput.getText();
     }
+    public String getCityInput() { return country;}
+
+    public String getPostcodeInput() { return  postcodeInfoInput.getText();}
+
+    public String getCountryInput() { return  cityInfoInput.getText();
+    }
+
+    public String getPhoneInfoInput() { return  phoneInfoInput.getText();
+    }
+
 }

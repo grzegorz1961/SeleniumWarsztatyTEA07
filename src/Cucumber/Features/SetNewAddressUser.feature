@@ -8,8 +8,13 @@ Feature: I add a new address
     And I enter my "<zip/postal code>" in the zip/postal code input
     And I select my "<country>" in the country input
     And I enter my "<phone>" in the phone input
-    And I click the Submit button
-#    Then I check if "<alias>" in the added address is correct
+    Then I click the Submit button
+    And I check if "<alias>" in the added address is correct
+#    And I check if "<address>" in the added address is correct
+#    And I check if "<city>" in the added address is correct
+#    And I check if "<zip/postal code>" in the added address is correct
+#    And I check if "<country>" in the added address is correct
+#    And I check if "<phone>" in the added address is correct
 
     Examples:
       | alias    | address        | city        | zip/postal code | country        | phone             |

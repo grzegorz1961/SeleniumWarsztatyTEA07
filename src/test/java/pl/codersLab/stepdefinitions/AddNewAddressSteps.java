@@ -67,15 +67,25 @@ public class AddNewAddressSteps {
         addressInfoPage.setPhoneInput(phone);
     }
 
-    @And("^I click the Submit button$")
+    @Then("^I click the Submit button$")
     public void i_click_the_Submit_button() {
         addressInfoPage.submitSignInButton();
     }
 
-//    @Then("^I check if \"([^\"]*)\" in the added address is correct$")
+//    @And("^I check if \"([^\"]*)\" in the added address is correct$")
 //    public void iCheckIfInTheAddedAddressIsCorrect(String alias) throws Throwable {
-//        assertEquals("alias",addressInfoPage.getAliasInfoInput());
+//        Assert.assertEquals("alias",addressInfoPage.getAliasInfoInput());
 //        throw new PendingException();
 //    }
+    @Then("^I check if \"([^\"]*)\" in the added address is correct$")
+    public void i_check_if_in_the_added_address_is_correct() throws Throwable {
+           Assert.assertEquals("alias",addressInfoPage.getAliasInfoInput());
+//           Assert.assertEquals(" address",addressInfoPage.getAddressInfoInput());
+//           Assert.assertEquals("city", addressInfoPage.getCityInput());
+//           Assert.assertEquals("postcode", addressInfoPage.getPostcodeInput());
+//           Assert.assertEquals("country",addressInfoPage.getCityInput());
+//           Assert.assertEquals("phone", addressInfoPage.getPhoneInfoInput());
+        throw new PendingException();
+    }
 }
-
+//String alias, String address, String city, String postcode, String country,String phone
