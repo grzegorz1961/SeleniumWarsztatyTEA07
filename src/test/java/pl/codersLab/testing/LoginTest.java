@@ -27,9 +27,7 @@ public class LoginTest {
     @Test
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginAs("nkssnglcxxajzysope@twzhhq.com", "Kasia2021!");
-
-        driver.get("https://prod-kurs.coderslab.pl/index.php?controller=addresses");
+        loginPage.loginAs("krwrseepkmzaomxhbv@twzhhq.online", "Pass123");
 
     }
 

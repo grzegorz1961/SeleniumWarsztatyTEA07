@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
     private static WebDriver driver;
 
-    //Trzymamy nasze wszystkie szukane elementy w klasie a nie metodzie poniżej, nie mogą byc publiczne
     @FindBy(name = "email")
     private WebElement loginInput;
 
@@ -19,20 +18,6 @@ public class LoginPage {
     @FindBy(id = "submit-login")
     private WebElement signInButton;
 
-    @FindBy(xpath = "//*[@id=\"address-link\"]/span")
-    private WebElement addFirstAddressButton;
-
-    @FindBy(xpath = "//*[@id=\"content\"]/div[2]/a")
-    private WebElement createFirstAddress;
-
-    @FindBy(xpath = "//*[@id=\"addresses-link\"]/span")
-    private WebElement addressesButton;
-
-    @FindBy(xpath = "//*[@data-link-action='add-address']")
-    private WebElement createNewAddress;
-
-
-    //Aby powyższe lokatory działały wywołujemy w konstruktorze: statyczną metodę PageFactory
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -49,14 +34,5 @@ public class LoginPage {
 
         signInButton.click();
 
-//        if(addFirstAddressButton.isDisplayed()) {
-//            addFirstAddressButton.click();
-//            createFirstAddress.click();
-//        }else {
-//            addressesButton.click();
-//        }
-//        createNewAddress.click();
-
-        addressesButton.click();
     }
 }
