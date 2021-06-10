@@ -1,7 +1,6 @@
 package pl.codersLab.pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,14 +9,9 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
+
 public class AddressInfoPage {
     private static WebDriver driver;
-
-    @FindBy(xpath = "//*[@id=\"address-link\"]/span")
-    private WebElement addFirstAddressButton;
-
-    @FindBy(xpath = "//*[@id=\"addresses-link\"]/span")
-    private WebElement addressesButton;
 
     @FindBy(xpath = "//*[@class='addresses-footer']//a")
     private WebElement createNewAddress;
@@ -54,32 +48,25 @@ public class AddressInfoPage {
     @FindBy(xpath = "//*[@id='content']//button")
     private WebElement saveAddress;
 
-       public AddressInfoPage(WebDriver driver) {
+    @FindBy(xpath = "//span[text()='Delete']")
+    private WebElement deleteButton;
+
+    @FindBy(css = "#notifications > div > article > ul > li")
+    private WebElement messageDeleteAddress;
+
+    public AddressInfoPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public static String getNameUser(){
-
-           return nameUser.getText();
+    public static String getNameUser() {
+        return nameUser.getText();
     }
 
     public void checkAddressList(String listData) {
         int listDataSize = listDateAddress.size();
-        String newCreateAddress = listDateAddress.get(listDataSize-1).getText();
-        Assert.assertEquals(listData,newCreateAddress);
-    }
-
-    public void submitAddFirstAddressButton() {
-        try {
-            addFirstAddressButton.click();
-        } catch (ElementClickInterceptedException e) {
-            e.getMessage();
-            System.out.println("The first shipping address has been added");
-        }
-    }
-    public void submitAddressesButton() {
-        addressesButton.click();
+        String newCreateAddress = listDateAddress.get(listDataSize - 1).getText();
+        Assert.assertEquals(listData, newCreateAddress);
     }
 
     public void submitCreateNewAddress() {
@@ -96,12 +83,12 @@ public class AddressInfoPage {
 
     public void setCityInput(String city) {
         cityInfoInput.sendKeys(city);
-          }
+    }
 
     public void setPostcodeInput(String postcode) {
         postcodeInfoInput.sendKeys(postcode);
-
     }
+
     public void setCountryInput(String country) {
         Select id_country = new Select(countryInfoInput);
         id_country.selectByVisibleText(country);
@@ -113,5 +100,15 @@ public class AddressInfoPage {
 
     public void submitSaveButton() {
         saveAddress.click();
+    }
+
+    public void submitDeleteButton() {
+        deleteButton.click();
+    }
+
+    public void checkListEmpty() {
+        if (listDateAddress.isEmpty()) {
+            Assert.assertEquals("Address successfully deleted!", messageDeleteAddress.getText());
+        }
     }
 }

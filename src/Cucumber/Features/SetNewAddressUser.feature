@@ -11,10 +11,12 @@ Feature: I add a new address
     And I enter my "<phone>" in the phone input
     And I click the Submit button
     Then I check the correctness of the saved address
+    And I delete the entered address
+    And I check if the address has been removed
 
     Examples:
       | alias    | address1        | city        | postcode        | country        | phone            |
-      | janek01  | Nawrot 24       | Lodz        | 91-609          | United Kingdom | 48 987- 896-567  |
+      | janek01  | Nawrot 24       | Lodz        | 91-609          | United Kingdom | +48 987- 896-567  |
 
 
 

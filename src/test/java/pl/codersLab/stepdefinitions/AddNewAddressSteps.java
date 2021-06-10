@@ -4,32 +4,25 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import pl.codersLab.function.LoginSetUp;
 import pl.codersLab.pages.AddressInfoPage;
 import pl.codersLab.pages.LoginPage;
-import java.util.concurrent.TimeUnit;
-
 
 public class AddNewAddressSteps {
     private WebDriver driver;
     AddressInfoPage addressInfoPage;
     String listDataString;
 
-
     @Given("I am logged in to CodersLab$")
     public void i_am_logged_in_to_CodersLab_shop_and_click_to_button_Addresses() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-
+        this.driver = LoginSetUp.setUp();
         driver.get("https://prod-kurs.coderslab.pl/index.php?controller=authentication&back=my-account");
+
         this.addressInfoPage = new AddressInfoPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginAs("krwrseepkmzaomxhbv@twzhhq.online", "Pass123");
-
         driver.get("https://prod-kurs.coderslab.pl/index.php?controller=addresses");
     }
 
@@ -51,7 +44,6 @@ public class AddNewAddressSteps {
     public void i_enter_my_in_the_address_input(String address1) {
         addressInfoPage.setAddressInput(address1);
         listDataString += "\n" + address1;
-
     }
 
     @And("^I enter my \"([^\"]*)\" in the city input$")
@@ -86,6 +78,17 @@ public class AddNewAddressSteps {
     @Then("^I check the correctness of the saved address$")
     public void i_check_the_correctness_of_the_saved_address() {
         addressInfoPage.checkAddressList(listDataString);
+    }
+
+    @Then("^I delete the entered address$")
+    public void i_delete_the_entered_address() {
+        addressInfoPage.submitDeleteButton();
+    }
+
+    @Then("^I check if the address has been removed$")
+    public void i_check_if_the_address_has_been_removed() {
+        addressInfoPage.checkListEmpty();
+        System.out.println("I checked that the address has been removed");
     }
 }
 
