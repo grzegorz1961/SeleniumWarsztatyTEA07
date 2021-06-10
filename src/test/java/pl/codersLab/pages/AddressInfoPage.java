@@ -19,8 +19,14 @@ public class AddressInfoPage {
     @FindBy(xpath = "//*[@id=\"addresses-link\"]/span")
     private WebElement addressesButton;
 
-    @FindBy(xpath = "//*[@data-link-action='add-address']")
+    @FindBy(xpath = "//*[@class='addresses-footer']//a")
     private WebElement createNewAddress;
+
+    @FindBy(xpath = "//div[@class='user-info']//span")
+    private static WebElement nameUser;
+
+    @FindBy(xpath = "//section[@id='content']//article/div[@class='address-body']")
+    private List<WebElement> listDateAddress;
 
     @FindBy(xpath = "//*[@id=\"content\"]/div/div/form/section/div[1]/div[1]/input")
     private WebElement aliasInfoInput;
@@ -45,38 +51,23 @@ public class AddressInfoPage {
     private WebElement phoneInfoInput;
     private String phone = "//*[@id=\"content\"]/div/div/form/section/div[11]/div[1]/input";
 
-    @FindBy(xpath = "//*[@id=\"content\"]/div/div/form/footer/button")
-    private WebElement saveAddressButton;
-//----------------------------------------------------------------------------------------------------------------------
-    @FindBy(xpath = "//section[@id='content']//div[@class='address-body']/h4/text()[1]")
-    //div[@class='address-body']/address/text()[3]
-    private WebElement aliasCheckAddress;
-    //--------------------------------------------------------------------------------------------------------------------------------------------
-    //Potraktować to jak jeden zbiór i iterować po nim
-    //section[@id='content']//div[@class='address-body']/address
-    //-------------------------------------------------------------------------------------------------------------------------------------------
+    @FindBy(xpath = "//*[@id='content']//button")
+    private WebElement saveAddress;
 
-    @FindBy(xpath = "//section[@id='content']//div[@class='address-body']/address/text()[2]")
-    private WebElement addressCheckAddress;
-
-    @FindBy(xpath = "//section[@id='content']//div[@class='address-body']/address/text()[3]")
-    private WebElement cityCheckAddress;
-
-    @FindBy(xpath = "//section[@id='content']//div[@class='address-body']/address/text()[4]")
-    private WebElement postcodeCheckAddress;
-
-    @FindBy(xpath = "//section[@id='content']//div[@class='address-body']/address/text()[5]")
-    private WebElement countryCheckAddress;
-
-    @FindBy(xpath = "//section[@id='content']//div[@class='address-body']/address/text()[6]")
-    private WebElement phoneCheckAddress;
-//----------------------------------------------------------------------------------------------------------------------
-    @FindBy(xpath = "//span[text()='Delete']")
-    private WebElement deleteButton;
-
-    public AddressInfoPage(WebDriver driver) {
+       public AddressInfoPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public static String getNameUser(){
+
+           return nameUser.getText();
+    }
+
+    public void checkAddressList(String listData) {
+        int listDataSize = listDateAddress.size();
+        String newCreateAddress = listDateAddress.get(listDataSize-1).getText();
+        Assert.assertEquals(listData,newCreateAddress);
     }
 
     public void submitAddFirstAddressButton() {
@@ -97,83 +88,31 @@ public class AddressInfoPage {
     }
 
     public void setAliasInput(String alias) {
-        aliasInfoInput.click();
-        aliasInfoInput.clear();
         aliasInfoInput.sendKeys(alias);
-        System.out.println("I entered my alias to address form: " + alias);
     }
 
     public void setAddressInput(String address) {
-        addressInfoInput.click();
-        addressInfoInput.clear();
         addressInfoInput.sendKeys(address);
-        System.out.println("I entered my address1 to address form: " + address);
     }
 
     public void setCityInput(String city) {
-        cityInfoInput.click();
-        cityInfoInput.clear();
         cityInfoInput.sendKeys(city);
-        System.out.println("I entered my city to address form: " + city);
-    }
+          }
 
     public void setPostcodeInput(String postcode) {
-        //postcodeInfoInput.click();
-        postcodeInfoInput.clear();
         postcodeInfoInput.sendKeys(postcode);
-        System.out.println("I entered my postcode to address form: " + postcode);
-    }
 
+    }
     public void setCountryInput(String country) {
         Select id_country = new Select(countryInfoInput);
         id_country.selectByVisibleText(country);
-        System.out.println("I entered my country to address form: " + country);
     }
 
     public void setPhoneInput(String phone) {
-        phoneInfoInput.click();
-        phoneInfoInput.clear();
         phoneInfoInput.sendKeys(phone);
-        System.out.println("I entered my phone to address form: " + phone);
     }
 
-    public void submitSignInButton() {
-        saveAddressButton.click();
-    }
-
-    public String getAliasCheckAddress() {
-        return aliasCheckAddress.getText();
-    }
-
-    public String getAddressCheck() {
-        return addressCheckAddress.getText();
-    }
-
-    public String getPostcodeCheck() {
-        return postcodeCheckAddress.getText();
-    }
-
-    public String getCityCheckAddress() {
-        return cityCheckAddress.getText();
-    }
-
-    public String getCountryCheckAddress() {
-        return countryCheckAddress.getText();
-    }
-
-    public String getPhoneCheckAddress() {
-        return phoneCheckAddress.getText();
-    }
-
-    public void submitDeleteButton() {
-        deleteButton.click();
-    }
-
-    public void showData() {
-        System.out.println(addressCheckAddress.getText());
-        System.out.println(postcodeCheckAddress.getText());
-        System.out.println(cityCheckAddress.getText());
-        System.out.println(countryCheckAddress.getText());
-        System.out.println(phoneCheckAddress.getText());
+    public void submitSaveButton() {
+        saveAddress.click();
     }
 }
