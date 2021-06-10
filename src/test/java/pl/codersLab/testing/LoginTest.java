@@ -17,7 +17,6 @@ public class LoginTest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 
         driver = new ChromeDriver();
-        //Linika do projektu końcowego, czekamy jak znajdziemy nasze web elementy
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://prod-kurs.coderslab.pl/index.php?controller=authentication&back=my-account");
@@ -33,6 +32,6 @@ public class LoginTest {
 
     @After
     public void tearDown() {
-//        driver.quit();
+        driver.quit();
     }
 }

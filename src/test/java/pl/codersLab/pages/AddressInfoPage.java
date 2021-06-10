@@ -78,7 +78,6 @@ public class AddressInfoPage {
             System.out.println("The first shipping address has been added");
         }
     }
-
     public void submitAddressesButton() {
         addressesButton.click();
     }

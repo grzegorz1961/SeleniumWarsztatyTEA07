@@ -1,23 +1,14 @@
 package pl.codersLab.stepdefinitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pl.codersLab.pages.AddressInfoPage;
 import pl.codersLab.pages.LoginPage;
-
 import java.util.concurrent.TimeUnit;
-
-import org.junit.jupiter.api.Assertions;
-
-import static org.junit.Assert.assertEquals;
 
 
 public class AddNewAddressSteps {
@@ -52,7 +43,7 @@ public class AddNewAddressSteps {
     public void i_enter_my_in_the_alias_input(String alias) {
         addressInfoPage = new AddressInfoPage(driver);
         listDataString = alias + "\n" + AddressInfoPage.getNameUser();
-                addressInfoPage.setAliasInput(alias);
+        addressInfoPage.setAliasInput(alias);
 
     }
 
