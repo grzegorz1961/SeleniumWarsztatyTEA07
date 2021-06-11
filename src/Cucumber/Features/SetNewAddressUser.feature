@@ -16,7 +16,7 @@ Feature: I add a new address
 
     Examples:
       | alias    | address1        | city        | postcode        | country        | phone            |
-      | janek01  | Nawrot 24       | Lodz        | 91-609          | United Kingdom | +48 987- 896-567  |
+      | janek01  | Nawrot 24       | Lodz        | 91-609          | United Kingdom | +48 687-896-567  |
 
 
 

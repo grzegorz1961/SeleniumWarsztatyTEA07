@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.List;
 
 
@@ -59,16 +58,6 @@ public class AddressInfoPage {
         PageFactory.initElements(driver, this);
     }
 
-    public static String getNameUser() {
-        return nameUser.getText();
-    }
-
-    public void checkAddressList(String listData) {
-        int listDataSize = listDateAddress.size();
-        String newCreateAddress = listDateAddress.get(listDataSize - 1).getText();
-        Assert.assertEquals(listData, newCreateAddress);
-    }
-
     public void submitCreateNewAddress() {
         createNewAddress.click();
     }
@@ -93,13 +82,22 @@ public class AddressInfoPage {
         Select id_country = new Select(countryInfoInput);
         id_country.selectByVisibleText(country);
     }
-
     public void setPhoneInput(String phone) {
         phoneInfoInput.sendKeys(phone);
     }
 
     public void submitSaveButton() {
         saveAddress.click();
+    }
+
+    public static String getNameUser() {
+        return nameUser.getText();
+    }
+
+    public void checkAddressList(String listData) {
+        int listDataSize = listDateAddress.size();
+        String newCreateAddress = listDateAddress.get(listDataSize - 1).getText();
+        Assert.assertEquals(listData, newCreateAddress);
     }
 
     public void submitDeleteButton() {

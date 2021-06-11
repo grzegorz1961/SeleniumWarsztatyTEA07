@@ -35,9 +35,8 @@ public class AddNewAddressSteps {
     @And("^I enter my \"([^\"]*)\" in the alias input$")
     public void i_enter_my_in_the_alias_input(String alias) {
         addressInfoPage = new AddressInfoPage(driver);
-        listDataString = alias + "\n" + AddressInfoPage.getNameUser();
         addressInfoPage.setAliasInput(alias);
-
+        listDataString = alias + "\n" + AddressInfoPage.getNameUser();
     }
 
     @And("^I enter my \"([^\"]*)\" in the address input$")
@@ -78,6 +77,13 @@ public class AddNewAddressSteps {
     @Then("^I check the correctness of the saved address$")
     public void i_check_the_correctness_of_the_saved_address() {
         addressInfoPage.checkAddressList(listDataString);
+        // The second way to check the correctness of the entered address
+        Assert.assertTrue(listDataString.contains("janek01"));
+        Assert.assertTrue(listDataString.contains("Nawrot 24"));
+        Assert.assertTrue(listDataString.contains("Lodz"));
+        Assert.assertTrue(listDataString.contains("91-609"));
+        Assert.assertTrue(listDataString.contains("United Kingdom"));
+        Assert.assertTrue(listDataString.contains("+48 687-896-567"));
     }
 
     @Then("^I delete the entered address$")
@@ -88,6 +94,8 @@ public class AddNewAddressSteps {
     @Then("^I check if the address has been removed$")
     public void i_check_if_the_address_has_been_removed() {
         addressInfoPage.checkListEmpty();
+        // The second way to check if the address has been removed
+        Assert.assertTrue(listDataString.contains(""));
         System.out.println("I checked that the address has been removed");
     }
 }
